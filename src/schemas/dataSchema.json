@@ -1,0 +1,65 @@
+{
+    "schema": "https://json-schema.org/draft/2019-09/schema",
+    "id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "name",
+        "age",
+        "city",
+        "role",
+        "departmentNumber"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "default": "",
+            "title": "The name Schema",
+            "examples": [
+                "Barbara"
+            ]
+        },
+        "age": {
+            "type": "integer",
+            "default": 0,
+            "title": "The age Schema",
+            "examples": [
+                0
+            ]
+        },
+        "city": {
+            "type": "string",
+            "default": "",
+            "title": "The city Schema",
+            "examples": [
+                "Cascavel"
+            ]
+        },
+        "role": {
+            "type": "string",
+            "default": "",
+            "title": "The role Schema",
+            "examples": [
+                "Administrator"
+            ]
+        },
+        "departmentNumber": {
+            "type": "integer",
+            "default": 0,
+            "title": "The departmentNumber Schema",
+            "examples": [
+                25342
+            ]
+        }
+    },
+    "examples": [
+        {
+            "name": "Barbara",
+            "age": 0,
+            "city": "Cascavel",
+            "role": "Administrator",
+            "departmentNumber": 25342
+        }
+    ]
+}

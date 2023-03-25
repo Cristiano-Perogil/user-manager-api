@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonschema": "^1.4.1"
+  },
+  "name": "users-api",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./server.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Cristiano Perogil",
+  "license": "ISC",
+  "description": "This API provides features to keep track of the users of any application by regestering and keeping them safely logged in.",
+  "devDependencies": {
+    "supertest": "^6.3.3"
+  }
+}
