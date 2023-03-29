@@ -63,14 +63,10 @@ function deleteUser(id) {
     } catch (error) {
         throw new Error(error.message)
     }
-
-
 }
 
-
-
 // Saving changes to the database
-function saveFile(fileName = '', data) {
+function saveFile(fileName = '', data = {}) {
     fs.writeFile(`./src/db/${fileName}`, JSON.stringify(data, null, 2), (err) => {
         if (err) {
             throw new Error("an error didn't allow the user to be added to the database. Contact support for more information.")
