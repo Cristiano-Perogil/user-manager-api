@@ -11,6 +11,7 @@ route.put("/:id", (req, res) => {
         let errorMSG = [];
         userDataValidation.errors.map((errors) => {
             errorMSG.push(errors.stack);
+            console.log(errorMSG)
         })
         return res.status(422).json({ status: "Fail to add user", reason: "The request doesn't follows the pattern described in the doc", details: errorMSG });
     }

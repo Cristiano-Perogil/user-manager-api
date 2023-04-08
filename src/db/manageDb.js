@@ -18,7 +18,7 @@ function addUser(data) {
 
 // Editing a certain user from the database
 function editUser(id, data) {
-    const user = users.find((user) => user.ID === id);
+    let user = users.find((user) => user.ID === id);
 
     if (!user) {
         throw new Error("not found");
@@ -30,7 +30,7 @@ function editUser(id, data) {
         age: data.age,
         city: data.city,
         role: data.role,
-        dapartmentNumber: data.departmentNumber
+        departmentNumber: data.departmentNumber
     }
 
     users = users.map((user) => {
@@ -41,7 +41,7 @@ function editUser(id, data) {
     })
 
     try {
-        saveFile(fileName, users)
+        saveFile(fileName, users);
     } catch (error) {
         throw new Error(err.message);
     }
@@ -71,11 +71,18 @@ function saveFile(fileName = '', data = {}) {
         if (err) {
             throw new Error("an error didn't allow the user to be added to the database. Contact support for more information.")
         }
-    })
+    });
+
+    console.log(users)
+}
+
+function db() {
+    return users
 }
 
 module.exports = {
     addUser,
     editUser,
-    deleteUser
+    deleteUser,
+    db
 }
