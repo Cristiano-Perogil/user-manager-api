@@ -80,6 +80,11 @@ function db() {
     return users
 }
 
+// Returning the users by storing them into a mutable variable
+const db = () => {
+    return users
+}
+
 module.exports = {
     addUser,
     editUser,
