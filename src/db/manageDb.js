@@ -76,10 +76,6 @@ function saveFile(fileName = '', data = {}) {
     console.log(users)
 }
 
-function db() {
-    return users
-}
-
 // Returning the users by storing them into a mutable variable
 const db = () => {
     return users

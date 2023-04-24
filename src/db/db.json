@@ -1,51 +1,26 @@
 [
   {
-<<<<<<< HEAD
-    "ID": 10,
-    "name": "Laura",
-    "age": 21,
-    "city": "Barueri",
-    "role": "Adm",
-    "departmentNumber": 223000
-  },
-  {
-    "ID": 12,
-    "name": "Marta",
-    "age": 12,
-    "city": "123",
-    "role": "12",
-    "departmentNumber": 222
-=======
     "ID": 1,
-    "name": "Vanda",
-    "age": 22,
-    "city": "Jararaca",
-    "role": "Developer",
-    "departmentNumber": 23716003
+    "name": "Cristiano Perogil",
+    "age": 24,
+    "city": "Barueri",
+    "role": "SW Developer",
+    "departmentNumber": 123200
   },
   {
     "ID": 2,
-    "name": "Eduardo",
-    "age": 29,
-    "city": "Jararaca",
-    "role": "Adm",
-    "departmentNumber": 23716251
-  },
-  {
-    "ID": 3,
-    "name": "Filipe",
-    "age": 29,
-    "city": "Cascavel",
-    "role": "Developer",
-    "departmentNumber": 23716003
-  },
-  {
-    "ID": 4,
     "name": "Stefany",
     "age": 39,
     "city": "Cascavel",
     "role": "TO",
     "departmentNumber": 23716003
->>>>>>> 0b6a6560a66c5b006846e95bf07b9c5f35d042cc
+  },
+  {
+    "ID": 3,
+    "name": "Claude",
+    "age": 21,
+    "city": "Paris",
+    "role": "SW Developer",
+    "departmentNumber": 123200
   }
 ]
