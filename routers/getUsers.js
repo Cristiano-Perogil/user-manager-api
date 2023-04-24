@@ -1,7 +1,7 @@
 const express = require("express");
 const route = express.Router();
 
-let { db } = require("../src/db/manageDb")
+const { db } = require("../src/db/manageDb")
 
 route.get("/", (req, res) => {
     return res.send(db());
