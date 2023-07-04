@@ -1,19 +1,22 @@
 const express = require("express");
 const route = express.Router();
-const { getUsers, getUsersQuery } = require('../src/db/dbManager');
+const { runSQL, getUsersQuery } = require('../src/db/dbManager');
 
 route.get("/", (req, res) => {
     if (Object.keys(req.query).length === 0 && req.body.constructor === Object) {
         query = getUsersQuery();
     } else {
-        console.log(`Filtering logs by ${JSON.stringify(req.query)}\nPlease wait...`);
+        console.log(`Filtering users by ${JSON.stringify(req.query)}\nPlease wait...`);
         query = getUsersQuery(req.query);
     }
 
-    getUsers(query).then((data) => {
+    runSQL(query, 'SELECT').then((data) => {
+        if (data.data.length == 0) {
+            res.status(404).json({ status: 'FAILED', reason: 'No users were found.' });
+        }
         res.send(data.data);
     }).catch((err) => {
-        res.status(400).json({ status: 'FAILED', reason: err.message })
+        res.status(400).json({ status: 'FAILED', reason: err.error })
     })
 });
 

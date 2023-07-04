@@ -17,8 +17,8 @@ function getUsersQuery(reqQuery = null) {
     return query;
 }
 
-function getUsers(query) {
-    console.log('Running getUsers\nSQL: ' + query);
+function runSQL(query, statement = '') {
+    console.log('Running DB interaction\nSQL: ' + query);
     const dbInteraction = new Promise((resolve, reject) => {
         let response = {
             data: [],
@@ -34,16 +34,18 @@ function getUsers(query) {
             console.log('Connected to the users database.');
         });
 
-        db.all(query, (err, rows) => {
-            if (err) {
-                console.log(err.message);
-                response.error = err.message;
-                reject(response);
-            }
+        if (statement == 'SELECT') {
+            db.all(query, (err, rows) => {
+                if (err) {
+                    console.log(err.message);
+                    response.error = err.message;
+                    reject(response);
+                }
 
-            response.data = rows;
-            resolve(response);
-        });
+                response.data = rows;
+                resolve(response);
+            });
+        }
 
         // Closing the connection
         db.close((err) => {
@@ -59,6 +61,6 @@ function getUsers(query) {
 }
 
 module.exports = {
-    getUsers,
+    runSQL,
     getUsersQuery
 };
