@@ -1,11 +1,21 @@
 const express = require("express");
 const route = express.Router();
-
-const { db } = require("../src/db/manageDb")
+const { getUsers, getUsersQuery } = require('../src/db/dbManager');
 
 route.get("/", (req, res) => {
-    return res.send(db());
-})
+    if (Object.keys(req.query).length === 0 && req.body.constructor === Object) {
+        query = getUsersQuery();
+    } else {
+        console.log(`Filtering logs by ${JSON.stringify(req.query)}\nPlease wait...`);
+        query = getUsersQuery(req.query);
+    }
+
+    getUsers(query).then((data) => {
+        res.send(data.data);
+    }).catch((err) => {
+        res.status(400).json({ status: 'FAILED', reason: err.message })
+    })
+});
 
 // Filtering users
 route.get("/filterusers", (req, res) => {

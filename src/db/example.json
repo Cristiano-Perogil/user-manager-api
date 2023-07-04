@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Cristiano",
+    "age": 24,
+    "city": "Barueri",
+    "role": "SW Developer",
+    "department_number": 223111
+  },
+  {
+    "id": 2,
+    "name": "Marina",
+    "age": 27,
+    "city": "New York",
+    "role": "SW Developer",
+    "department_number": 227111
+  }
+]

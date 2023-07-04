@@ -73,7 +73,7 @@ function saveFile(fileName = '', data = {}) {
         }
     });
 
-    console.log(users)
+
 }
 
 // Returning the users by storing them into a mutable variable
