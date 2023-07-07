@@ -9,7 +9,7 @@
         "age",
         "city",
         "role",
-        "departmentNumber"
+        "department_number"
     ],
     "properties": {
         "name": {

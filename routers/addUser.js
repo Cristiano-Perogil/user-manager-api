@@ -2,9 +2,9 @@ const express = require("express");
 const route = express.Router();
 const validator = require("jsonschema").validate;
 const schema = require("../src/schemas/dataSchema.json");
-const { addUser } = require("../src/db/manageDb");
+const { addUserQuery, runSQL } = require('../src/db/dbManager');
 
-route.post("/", (req, res) => {
+route.post("/", async (req, res) => {
     const userDataValidation = validator(req.body, schema);
 
     if (!userDataValidation.valid) {
@@ -15,14 +15,13 @@ route.post("/", (req, res) => {
         return res.status(422).json({ status: "Fail to add user", reason: "The request doesn't follows the pattern described in the doc", details: errorMSG });
     }
 
-    // Trying to add the user to the database
-    try {
-        addUser(req.body);
-        return res.status(200).json({ status: "Successfully added a user" });
-    } catch (err) {
-        console.log(err.message)
-        return res.status(500).json({ status: "an error didn't allow the user to be added to the database. Contact support for more information." });
-    }
+    let query = addUserQuery(req.body);
+
+    await runSQL(query, 'INSERT').then((response) => {
+        return res.status(200).json({ status: 'success!' })
+    }).catch((err) => {
+        return res.status(400).json({ status: 'FAILED', reason: err.error });
+    })
 })
 
 module.exports = route;

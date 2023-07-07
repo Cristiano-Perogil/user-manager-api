@@ -17,6 +17,48 @@ function getUsersQuery(reqQuery = null) {
     return query;
 }
 
+function addUserQuery(reqBody) {
+    let columns = 'INSERT INTO users(';
+    let values = 'VALUES(';
+    for (let key in reqBody) {
+        columns += `${key.toString()}`;
+        if (key.toString() == 'age' || key.toString() == 'department_number') {
+            values += `${reqBody[key]}`;
+        } else {
+            values += `'${reqBody[key]}'`;
+        }
+        if (Object.keys(reqBody).length > 1 && key.toString() != Object.keys(reqBody)[Object.keys(reqBody).length - 1]) {
+            columns += ', ';
+            values += ', ';
+        }
+    }
+    columns += ')';
+    values += ');';
+    let query = columns.concat(values);
+    return query;
+}
+
+function deleteUserQuery(userId) {
+    let query = `DELETE FROM users WHERE id = ${userId};`;
+    return query;
+}
+
+function editUserQuery(userId, reqBody) {
+    let query = 'UPDATE users SET ';
+    for (let key in reqBody) {
+        if (key.toString() == 'age' || key.toString() == 'department_number') {
+            query += `${key.toString()} = ${reqBody[key]}`;
+        } else {
+            query += `${key.toString()} = '${reqBody[key].toLowerCase()}'`;
+        }
+        if (Object.keys(reqBody).length > 1 && key.toString() != Object.keys(reqBody)[Object.keys(reqBody).length - 1]) {
+            query += ', ';
+        }
+    }
+    query += ` WHERE id = ${userId};`;
+    return query;
+}
+
 function runSQL(query, statement = '') {
     console.log('Running DB interaction\nSQL: ' + query);
     const dbInteraction = new Promise((resolve, reject) => {
@@ -45,6 +87,17 @@ function runSQL(query, statement = '') {
                 response.data = rows;
                 resolve(response);
             });
+        } else if (statement == 'UPDATE' || statement == 'INSERT' || statement == 'DELETE') {
+            db.run(query, (err) => {
+                if (err) {
+                    console.log(err.message);
+                    response.error = err.message;
+                    reject(response);
+                }
+
+                response.data = 'Success!';
+                resolve(response);
+            });
         }
 
         // Closing the connection
@@ -61,6 +114,9 @@ function runSQL(query, statement = '') {
 }
 
 module.exports = {
-    runSQL,
-    getUsersQuery
+    addUserQuery,
+    deleteUserQuery,
+    editUserQuery,
+    getUsersQuery,
+    runSQL
 };
