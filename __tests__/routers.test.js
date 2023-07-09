@@ -15,7 +15,7 @@ describe("POST/ ", () => {
             age: 24,
             city: "Lux",
             role: "IT leader",
-            departmentNumber: 23521
+            department_number: 23521
         });
         expect(response.status).toBe(200);
     })
