@@ -1,7 +1,7 @@
-const getusersRoute = require("./getUsers");
-const adduserRoute = require("./addUser");
-const editusersRoute = require("./editUser")
-const deleteuserRoute = require("./deleteUser")
+const getusersRoute = require('./getUsers');
+const adduserRoute = require('./addUser');
+const editusersRoute = require('./editUser');
+const deleteuserRoute = require('./deleteUser');
 
 function includeRoutes(app) {
     app.use('/getusers', getusersRoute);

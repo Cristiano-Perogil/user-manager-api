@@ -1,4 +1,4 @@
-const app = require("./app");
+const app = require('./app');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
@@ -12,7 +12,7 @@ app.use(
     swaggerUi.setup(swaggerDocument)
 );
 
-// Starting the sever
+// Starting the server
 app.listen(3000, () => {
-    console.log(`App running at port ${PORT}`)
+    console.log(`App running at port ${PORT}`);
 });

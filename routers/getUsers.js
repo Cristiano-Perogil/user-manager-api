@@ -1,8 +1,9 @@
-const express = require("express");
+const express = require('express');
 const route = express.Router();
 const { runSQL, getUsersQuery } = require('../src/db/dbManager');
 
-route.get("/", async (req, res) => {
+route.get('/', async (req, res) => {
+    let query;
     if (Object.keys(req.query).length === 0 && req.body.constructor === Object) {
         query = getUsersQuery();
     } else {
@@ -15,7 +16,8 @@ route.get("/", async (req, res) => {
             res.status(404).json({ status: 'FAILED', reason: 'No users were found.' });
         } else { res.send(data.data); }
     }).catch((err) => {
-        res.status(400).json({ status: 'FAILED', reason: err.error })
-    })
+        res.status(400).json({ status: 'FAILED', reason: err.error });
+    });
 });
+
 module.exports = route;

@@ -1,9 +1,11 @@
 const sqlite3 = require('sqlite3').verbose();
 
+/*
 let query = `INSERT INTO users(name, age, city,  role, department_number)
              VALUES('Marina', 27, 'New York', 'SW Developer', 227111);`;
 
 let createQuery = 'CREATE TABLE users(id INTEGER PRIMARY KEY, name VARCHAR NOT NULL, age INTEGER NOT NULL, city VARCHAR NOT NULL, role VARCHAR NOT NULL, department_number INTEGER NOT NULL);';
+*/
 
 function getUsersQuery(reqQuery = null) {
     let query = 'SELECT * FROM users';
@@ -93,10 +95,10 @@ function runSQL(query, statement = '') {
                     console.log(err.message);
                     response.error = err.message;
                     reject(response);
+                } else {
+                    response.data = 'Success!';
+                    resolve(response);
                 }
-
-                response.data = 'Success!';
-                resolve(response);
             });
         }
 

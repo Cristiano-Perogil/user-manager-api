@@ -68,6 +68,89 @@
                 }
             }
         },
+        "/edituser/{id}": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Edits information of a user present on the database",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID used to find the user to be edited",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "New user information",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateOrCreateUser"
+                        },
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The user has been edited",
+                        "schema": {
+                            "$ref": "#/definitions/Success"
+                        }
+                    },
+                    "400": {
+                        "description": "An internal error did not allow the edition of a user.",
+                        "schema": {
+                            "$ref": "#/definitions/failures"
+                        }
+                    },
+                    "422": {
+                        "description": "one of the properties within the req body is invalid or missing",
+                        "schema": {
+                            "$ref": "#/definitions/Invalid"
+                        }
+                    }
+                }
+            }
+        },
+        "/deleteuser/{id}": {
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Deletes a user from the database",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID used to find the user to be deleted",
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The user has been deleted from the database",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    },
+                    "400": {
+                        "description": "A bad request throws an error that shows what happened to it",
+                        "schema": {
+                            "$ref": "#/definitions/failures"
+                        }
+                    }
+                }
+            }
+        },
         "/getusers": {
             "get": {
                 "tags": [
